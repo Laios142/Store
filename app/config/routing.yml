@@ -1,0 +1,23 @@
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+admin:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
+login:
+    path: /home
+    defaults: { _controller: UserBundle:login:login }
+
+login_check:
+    path: /admin/login_check
+
+logout:
+    path: /admin/logout
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Article:all{% endblock %}
+
+{% block body %}
+    <h1>Liste des articles</h1>
+
+    {% for art in articles %}
+        <div>
+            <h2>{{ art.object }}</h2>
+            <p>Prix : {{ art.price }}</p>
+            <hr>
+            <div>
+                Description :
+                {{ art.description }}
+            </div>
+            <a href="{{ path("detailArticle", {"id": art.id}) }}" class="button">
+                Acheter
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}

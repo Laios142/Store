@@ -1,0 +1,46 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+    encoders:
+        UserBundle\Entity\Login: md5
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        main:
+            entity:
+                class: UserBundle\Entity\Login
+                property: username
+        in_memory:
+            memory: ~
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        login:
+            pattern: ^/home$
+            anonymous: true
+        admin:
+            pattern: ^/admin
+            anonymous: false
+            provider: main
+            form_login:
+                login_path: home
+                check_path: /admin/login_check
+            logout:
+                path: /admin/logout
+                target: /
+    access_control:
+            - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/admin, roles: ADMIN }
+
+            # activate different ways to authenticate
+
+            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+            #form_login: ~

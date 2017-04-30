@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Article:detail{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Merci pour votre achat</h1>
+
+        <p>Cliquez ici pour être redirigé vers l'accueil</p>
+        <a href="{{ path("allArticle") }}" class="btn btn-danger">
+            Retour
+        </a>
+    </div>
+{% endblock %}
